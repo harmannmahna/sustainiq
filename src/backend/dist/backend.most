@@ -1,0 +1,10 @@
+// Version: 4.0.0
+type NewActor__813281483 = {};
+type OldActor__18467633 = {};
+{
+  "20250621_000000_InitSustainIQ" :
+    (_old : OldActor__18467633) -> NewActor__813281483
+}
+actor  {
+  
+};

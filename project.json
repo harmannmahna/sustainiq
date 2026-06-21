@@ -1,0 +1,23 @@
+{
+  "overview": "SustainIQ is a gamified carbon footprint awareness and action platform that helps users estimate their environmental impact, discover financial savings from eco-friendly choices, and take meaningful action through challenges, offsets, and community sharing.",
+  "features": [
+    "Interactive carbon footprint calculator with real-time animated counters",
+    "Eco-Financial ROI simulator showing CO2 vs money saved",
+    "Reverse-Cart e-commerce simulator with sustainable alternatives",
+    "Vampire Power interactive room finder for standby drains",
+    "Micro-Offset market with virtual forest visualization",
+    "21-Day habit challenges with streak tracking",
+    "Localized green infrastructure map",
+    "Eco-Score badge system and social share kit"
+  ],
+  "category": "dashboard",
+  "tags": [
+    "sustainability",
+    "carbon-footprint",
+    "gamification",
+    "eco-friendly",
+    "interactive",
+    "charts"
+  ],
+  "last_updated": "2026-06-21T22:22:48.027Z"
+}

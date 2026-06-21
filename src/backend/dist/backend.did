@@ -1,0 +1,97 @@
+type UserProgress = 
+ record {
+   challengeId: ChallengeId;
+   currentStreak: nat;
+   daysCompleted: nat;
+   lastCheckIn: opt nat;
+ };
+type OffsetPurchase = 
+ record {
+   optionId: OffsetOptionId;
+   purchasedAt: nat;
+   quantity: nat;
+   totalCo2OffsetKg: float64;
+   totalCostUsd: float64;
+ };
+type OffsetOptionId = nat;
+type OffsetOption = 
+ record {
+   category: OffsetCategory;
+   co2OffsetKg: float64;
+   costUsd: float64;
+   description: text;
+   iconUrl: text;
+   id: OffsetOptionId;
+   name: text;
+ };
+type OffsetCategory = 
+ variant {
+   communitySolar;
+   oceanCleanup;
+   treePlanting;
+   wildlifeConservation;
+ };
+type FootprintInput = 
+ record {
+   category: Category;
+   unit: text;
+   value: float64;
+ };
+type FootprintEstimate = 
+ record {
+   category: Category;
+   co2KgPerYear: float64;
+   moneySavedPerYear: float64;
+ };
+type ConversionFactor = 
+ record {
+   category: Category;
+   co2KgPerUnit: float64;
+   moneySavedPerUnit: float64;
+   unit: text;
+ };
+type ChallengeStatus = 
+ variant {
+   active;
+   completed;
+   upcoming;
+ };
+type ChallengeId = nat;
+type Challenge = 
+ record {
+   category: text;
+   co2ReductionKg: float64;
+   description: text;
+   durationDays: nat;
+   id: ChallengeId;
+   participantCount: nat;
+   status: ChallengeStatus;
+   title: text;
+ };
+type Category = 
+ variant {
+   diet;
+   homeEnergy;
+   shopping;
+   transportation;
+ };
+service : {
+  calculateFootprint: (inputs: vec FootprintInput) ->
+   (vec FootprintEstimate) query;
+  calculateTotals: (estimates: vec FootprintEstimate) ->
+   (record {
+      totalCo2: float64;
+      totalSavings: float64;
+    }) query;
+  getChallenge: (id: ChallengeId) -> (opt Challenge) query;
+  getChallengesByStatus: (status: ChallengeStatus) -> (vec Challenge) query;
+  getConversionFactors: () -> (vec ConversionFactor) query;
+  getDefaultProgress: (challengeId: ChallengeId) -> (UserProgress) query;
+  getOffsetOption: (id: OffsetOptionId) -> (opt OffsetOption) query;
+  getOffsetOptionsByCategory: (category: OffsetCategory) ->
+   (vec OffsetOption) query;
+  listChallenges: () -> (vec Challenge) query;
+  listOffsetOptions: () -> (vec OffsetOption) query;
+  simulatePurchase: (optionId: OffsetOptionId, quantity: nat) ->
+   (opt OffsetPurchase) query;
+}
